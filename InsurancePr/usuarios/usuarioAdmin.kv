@@ -1,0 +1,94 @@
+# Reference agentes.py
+#: import main clientes.clientes
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+ 
+AdminUser:
+ 
+<AdminUser>:
+    orientation: "vertical"
+    first_name_text_input: first_name
+    last_name_text_input: last_name
+    age_text_input:age_client
+    padding: 10
+    spacing: 10
+
+ 
+    Label:
+        text:'Administrador de Usuario'
+        pos:0,250
+        font_size:50
+
+    Button:
+        id:edit_usuario
+        size_hint: (None, None)
+        height: 30
+        width: 200
+        pos:100,100
+        text:"Editar datos personales"
+
+      
+    GridLayout:
+        cols:2
+        rows:4
+        size_hint_y: None
+        height: "100dp"
+        pos: -100, 400
+        Label:
+            text: "Nombre Usuario"
+            width:20
+            height:50 
+        TextInput:
+            id: num_agent
+            text:'Pedro Perez Hernandez'
+            size_hint: (None, None)
+            height: 30
+            width: 200
+            disabled:True
+        Label:
+            text: "Password Actual"
+            width:20
+            height:50
+        TextInput:
+            id: first_name
+            size_hint: (None, None)
+            height: 30
+            multiline:False
+            password:True
+            width: 200
+        Label:
+            text: "Nuevo Password"
+            width: 20
+            height: 50
+        TextInput:
+            id: last_name
+            size_hint: (None, None)
+            multiline:False
+            password:True
+            height: 30
+            width: 200
+        Label:
+            text:"Confirmar Passwor"
+        TextInput:
+            id:age_client
+            size_hint: (None, None)
+            multiline:False
+            password:True
+            height: 30
+            width: 200
+            
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "Guardar"
+            size_hint_x: 15
+            on_press: root.submit_student()
+        Button:
+            text: "Borrar"
+            size_hint_x: 15
+            on_press: root.delete_student()
+        Button:
+            text: "Regresar"
+            size_hint_x: 15
+            on_press: root.go_back()

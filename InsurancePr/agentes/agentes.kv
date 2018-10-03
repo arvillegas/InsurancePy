@@ -1,0 +1,117 @@
+# Reference agentes.py
+#: import main clientes.clientes
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+ 
+Agentes:
+ 
+<Agentes>:
+    orientation: "vertical"
+    first_name_text_input: first_name
+    last_name_text_input: last_name
+    age_text_input:age_client
+    picture_file_input:picture_file
+    padding: 10
+    spacing: 10
+
+ 
+    Label:
+        text:'Nuevo Agente'
+        pos:0,250
+        font_size:50
+
+      
+    GridLayout:
+        cols:2
+        rows:9
+        size_hint_y: None
+        height: "100dp"
+        pos: -100, 400
+        Label:
+            text: "Numero de Agente"
+            width:20
+            height:50 
+        TextInput:
+            id: num_agent
+            text:'2332323'
+            size_hint: (None, None)
+            height: 30
+            width: 200
+            disabled:True
+        Label:
+            text: "Nombre"
+            width:20
+            height:50
+        TextInput:
+            id: first_name
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text: "Apellido"
+            width: 20
+            height: 50
+        TextInput:
+            id: last_name
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text:"Edad"
+        TextInput:
+            id:age_client
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text:"Correo Electronico"
+        TextInput:
+            id:email_client
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text:"Telefono"
+        TextInput:
+            id: phoneclient
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text:"Password"
+        TextInput:
+            id:password_client
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text:"Confirmar Password"
+        TextInput:
+            id:pass_repeat_client
+            size_hint: (None, None)
+            height: 30
+            width: 200
+        Label:
+            text:"Fotografia"
+        Button:
+            id:picture_file
+            size_hint: (None, None)
+            height: 30
+            width: 200
+            text:"Seleccionar Fotografia"
+            
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "Guardar"
+            size_hint_x: 15
+            on_press: root.submit_student()
+        Button:
+            text: "Borrar"
+            size_hint_x: 15
+            on_press: root.delete_student()
+        Button:
+            text: "Regresar"
+            size_hint_x: 15
+            on_press: root.go_back()

@@ -1,0 +1,147 @@
+# Reference polizas.py
+#: import main polizas.poliza
+ 
+Polizas:
+ 
+<Polizas>:
+    orientation: "vertical"
+    first_name_text_input: first_name
+    last_name_text_input: last_name
+    age_text_input:age_client
+    picture_file_input:picture_file
+    padding: 10
+    spacing: 10
+
+
+    Button:
+        text:'Comprobante de Domicilio'
+        size_hint:(None,None)
+        pos:100, 100
+        height:50
+        width:200
+    Button:
+        text:'INE'
+        size_hint:(None,None)
+        pos:600, 100
+        height:50
+        width:100
+
+ 
+    Label:
+        text:'Nueva Poliza'
+        pos:0,250
+        font_size:50
+
+      
+    GridLayout:
+        cols:2
+        rows:11
+        size_hint_y: None
+        height: "100dp"
+        pos: -100, 400
+        Label:
+            text: "Numero de Poliza"
+            width:20
+            height:50 
+        TextInput:
+            id: num_agent
+            text:'POLTIPO00000123'
+            size_hint: (None, None)
+            height: 30
+            width: 230
+            disabled:True
+        Label:
+            text:"Cliente"
+        Button:
+            id:picture_file
+            size_hint: (None, None)
+            height: 30
+            width: 230
+            text:"Seleccionar Cliente"
+        Label:
+            text:"Tipo de Seguro"
+        Button:
+            id:picture_file
+            size_hint: (None, None)
+            height: 30
+            width: 230
+            text:"Seleccionar Tipo de Seguro"
+        Label:
+            text: "Nombre Beneficiario"
+            width:20
+            height:50
+        TextInput:
+            id: first_name
+            size_hint: (None, None)
+            height: 30
+            width: 230
+        Label:
+            text: "Apellido Beneficiario"
+            width: 20
+            height: 50
+        TextInput:  
+            id: last_name
+            size_hint: (None, None)
+            height: 30
+            width: 230
+        Label:
+            text:"Edad Beneficiario"
+        TextInput:
+            id:age_client
+            size_hint: (None, None)
+            height: 30
+            width: 230
+        Label:
+            text:"Telefono Beneficiario"
+        TextInput:
+            id: phoneclient
+            size_hint: (None, None)
+            height: 30
+            width: 230
+        Label:
+            text:"Plan de Contratacion"
+        Button:
+            id:picture_file
+            size_hint: (None, None)
+            height: 30
+            width: 230
+            text:"Seleccionar Plan de Contratacion"
+        Label:
+            text:"Fecha de Contratacion"
+        TextInput:
+            id: phoneclient
+            size_hint: (None, None)
+            height: 30
+            width: 230
+        Label:
+            text:"Fecha de Vigencia"
+        TextInput:
+            id: phoneclient
+            size_hint: (None, None)
+            height: 30
+            width: 230
+        Label:
+            text:"Suma Asegurada"
+        TextInput:
+            id:email_client
+            size_hint: (None, None)
+            height: 30
+            width: 230
+            disabled:True
+        
+ 
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "Guardar"
+            size_hint_x: 15
+            on_press: root.submit_student()
+        Button:
+            text: "Borrar"
+            size_hint_x: 15
+            on_press: root.delete_student()
+        Button:
+            text: "Regresar"
+            size_hint_x: 15
+            on_press: root.go_back()

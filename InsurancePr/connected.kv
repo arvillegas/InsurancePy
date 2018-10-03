@@ -1,0 +1,60 @@
+#:import Factory kivy.factory.Factory
+#:import KivyLexer kivy.extras.highlight.KivyLexer
+
+
+<Connected>:
+    fullscreen: True
+
+    ActionBar:
+        pos_hint: {'top':1}
+
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                title: 'Aseguradora App'
+                with_previous: False
+
+            ActionGroup:
+                text:'Agentes de Seguros'
+                ActionButton:
+                    text: 'Consultar de Agentes'
+                    on_release: root.go_listAgentes()
+                ActionButton:
+                    text: 'Agregar Agente'
+                    on_release: root.go_Agentes()
+
+            ActionGroup:
+                text:'Clientes'
+                ActionButton:
+                    text: 'Consultar Clientes'
+                    on_release: root.go_listClientes()
+                ActionButton:
+                    text: 'Agregar Clientes'
+                    on_release: root.go_clientes()
+
+            ActionGroup:
+                text:'Polizas'
+                ActionButton:
+                    text: 'Consulta Polizas'
+                    on_release: root.go_listPolizas()
+                ActionButton:
+                    text: 'Agregar Polizas'
+                    on_release: root.go_Polizas()
+
+            ActionGroup:
+                text: 'Usuario'
+                mode: 'spinner'
+                ActionButton:
+                    text: 'Cambiar Password'
+                    on_release: root.go_User()
+                ActionButton:
+                    text: 'Cerrar Sesion'
+                    on_release: root.go_CloseSesion()
+
+<ListScreen>:
+    fullscreen: True
+
+
+
+
+

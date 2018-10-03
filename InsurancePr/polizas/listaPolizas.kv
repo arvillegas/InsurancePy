@@ -1,0 +1,32 @@
+<RVPolizas>:
+    BoxLayout:
+        orientation: "vertical"
+
+        GridLayout:
+            size_hint: 1, None
+            size_hint_y: None
+            height: 25
+            cols: 4
+
+            Label:
+                text: "No Poliza"
+            Label:
+                text: "Beneficiario Name"
+            Label:
+                text: "Fecha Vencimiento"
+            Label:
+                text: "Tipo Poliza"
+
+        BoxLayout:
+            RecycleView:
+                viewclass: 'SelectableButton'
+                data: [{'text': str(x)} for x in root.data_items]
+                SelectableRecycleGridLayout:
+                    cols: 4 
+                    default_size: None, dp(26)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    multiselect: True
+                    touch_multiselect: True
