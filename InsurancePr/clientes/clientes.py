@@ -83,9 +83,6 @@ class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None)
 
-
-
-
 class EstadoDropDown(DropDown):
     def __init__(self, screen_manager, **kwargs):
         super(EstadoDropDown, self).__init__(**kwargs)

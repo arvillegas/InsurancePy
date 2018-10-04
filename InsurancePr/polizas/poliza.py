@@ -2,6 +2,7 @@ from kivy.uix.screenmanager import Screen, SlideTransition
 from test.mainDB import ConnectionMySql
 from kivy.properties import ObjectProperty
 from clientes.clientes import LoadDialog
+from kivy.uix.dropdown import DropDown
 from kivy.uix.popup import Popup
 import pymysql.cursors  
 
@@ -11,6 +12,10 @@ class Polizas(Screen):
     last_name_benfe_text_input =ObjectProperty()
     age_benef_text_input = ObjectProperty()
     phone_benef_text_input = ObjectProperty()
+
+    def open_dd_cliente(self, widget):
+        self.dropdown = ClienteDropDown(self)           
+        self.dropdown.open(widget)
 
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
@@ -54,3 +59,29 @@ class Polizas(Screen):
         finally:
             # Close connection.
             connection.close()
+
+
+class ClienteDropDown(DropDown):
+    def __init__(self, screen_manager, **kwargs):
+        super(ClienteDropDown, self).__init__(**kwargs)
+        self.sm = screen_manager
+
+    def on_select(self, data):
+        self.sm.ids.cliente_select.text = data
+
+class TipoSeguroDropDown(DropDown):
+    def __init__(self, screen_manager, **kwargs):
+        super(TipoSeguroDropDown, self).__init__(**kwargs)
+        self.sm = screen_manager
+
+    def on_select(self, data):
+        self.sm.ids.tipo_select.text = data
+
+
+class PlanDropDown(DropDown):
+    def __init__(self, screen_manager, **kwargs):
+        super(PlanDropDown, self).__init__(**kwargs)
+        self.sm = screen_manager
+
+    def on_select(self, data):
+        self.sm.ids.plan_select.text = data

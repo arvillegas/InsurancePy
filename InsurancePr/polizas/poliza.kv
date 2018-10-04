@@ -22,8 +22,6 @@ Polizas:
     last_name_benfe_text_input:last_name_benef
     age_benef_text_input:age_benef
     phone_benef_text_input:phone_benef
-
-    picture_file_input:picture_file
     padding: 10
     spacing: 10
 
@@ -68,12 +66,13 @@ Polizas:
         LabelPolizas:
             text:"Cliente"
         BP:
-            id:picture_file
+            id:cliente_select
             text:"Cliente"
+            on_release:root.open_dd_cliente(self)
         LabelPolizas:
             text:"Tipo de Seguro"
         BP:
-            id:picture_file
+            id:tipo_select
             text:"Tipo de Seguro"
         LabelPolizas:
             text: "Nombre Beneficiario"
@@ -94,7 +93,7 @@ Polizas:
         LabelPolizas:
             text:"Plan de Contratacion"
         BP:
-            id:picture_file
+            id:plan_select
             text:"Plan de Contratacion"
         LabelPolizas:
             text:"Fecha de Contratacion"
@@ -125,3 +124,21 @@ Polizas:
             text: "Regresar"
             size_hint_x: 15
             on_press: root.go_back()
+
+
+<ClienteDropDown>:
+    Button:
+        text:"Cliente 1"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Cliente 2"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Cliente 3"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
