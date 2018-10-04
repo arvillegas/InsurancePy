@@ -22,24 +22,29 @@
     background_normal: 'atlas://data/images/defaulttheme/action_group'
     option_cls: Factory.ActionSpinnerOptions
 
+<LabelLogin@Label>
+    color:0,0,0,1
+
+
 <LoginScreen>:
+    title:'Sistema de Aseguradora Demo'
     BoxLayout
         id: login_layout
         orientation: 'vertical'
         padding: [10,50,10,50]
         spacing: 50
 
-        Label:
-            text: 'Welcome'
-            font_size: 32
+        Image:
+            id:imagelogo
+            source: 'logo.png'
 
         BoxLayout:
             orientation: 'vertical'
 
-            Label:
-                text: 'Login'
-                font_size: 18
-                halign: 'left'
+            LabelLogin:
+                text: 'Login:'
+                font_size: 15
+                halign: 'center'
                 text_size: root.width-20, 20
 
             TextInput:
@@ -49,10 +54,10 @@
 
         BoxLayout:
             orientation: 'vertical'
-            Label:
+            LabelLogin:
                 text: 'Password'
-                halign: 'left'
-                font_size: 18
+                halign: 'center'
+                font_size: 15
                 text_size: root.width-20, 20
 
             TextInput:
@@ -62,9 +67,12 @@
                 font_size: 28
 
         Button:
-            text: 'Login'
+            text: 'Iniciar'
             font_size: 24
-
+            size_hint:(.5,.5)
+            pos_hint: {'center_x': 0.5}
+            color: 0,0,0,1
+            background_color: (.247, .545, .769, 0.5)
             on_press: root.do_login(login.text, password.text)
 
 

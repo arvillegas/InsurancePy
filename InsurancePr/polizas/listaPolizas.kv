@@ -1,3 +1,7 @@
+
+<LabelListP@Label>
+    color:(0,0,0,1)
+
 <RVPolizas>:
     BoxLayout:
         orientation: "vertical"
@@ -8,14 +12,14 @@
             height: 25
             cols: 4
 
-            Label:
+            LabelListP:
                 text: "No Poliza"
-            Label:
-                text: "Beneficiario Name"
-            Label:
-                text: "Fecha Vencimiento"
-            Label:
-                text: "Tipo Poliza"
+            LabelListP:
+                text: "Name"
+            LabelListP:
+                text: "Fecha"
+            LabelListP:
+                text: "Tipo"
 
         BoxLayout:
             RecycleView:

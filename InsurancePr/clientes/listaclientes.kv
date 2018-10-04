@@ -1,10 +1,11 @@
 
-
+<LabelListC@Label>
+    color:(0,0,0,1)
 
 <TextInputPopup>:
     title: "Popup"
     size_hint: None, None
-    size: 400, 400
+    size: 300, 300
     auto_dismiss: False
 
     BoxLayout:
@@ -36,20 +37,20 @@
 <RV>:
     BoxLayout:
         orientation: "vertical"
-
+        color:(0, 0, 0, 1)
         GridLayout:
             size_hint: 1, None
             size_hint_y: None
             height: 25
             cols: 4
 
-            Label:
+            LabelListC:
                 text: "No Cliente"
-            Label:
-                text: "Client Name"
-            Label:
-                text: "Cliente Last Name"
-            Label:
+            LabelListC:
+                text: "Name"
+            LabelListC:
+                text: "Last Name"
+            LabelListC:
                 text: "Age"
 
         BoxLayout:

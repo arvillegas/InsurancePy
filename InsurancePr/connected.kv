@@ -15,37 +15,30 @@
                 with_previous: False
 
             ActionGroup:
-                text:'Agentes de Seguros'
-                ActionButton:
-                    text: 'Consultar de Agentes'
-                    on_release: root.go_listAgentes()
-                ActionButton:
-                    text: 'Agregar Agente'
-                    on_release: root.go_Agentes()
-
-            ActionGroup:
                 text:'Clientes'
                 ActionButton:
-                    text: 'Consultar Clientes'
+                    size_hint_x:None
+                    widht:200
+                    text: 'Consultar'
                     on_release: root.go_listClientes()
                 ActionButton:
-                    text: 'Agregar Clientes'
+                    text: 'Agregar'
                     on_release: root.go_clientes()
 
             ActionGroup:
                 text:'Polizas'
                 ActionButton:
-                    text: 'Consulta Polizas'
+                    text: 'Consulta'
                     on_release: root.go_listPolizas()
                 ActionButton:
-                    text: 'Agregar Polizas'
+                    text: 'Agregar'
                     on_release: root.go_Polizas()
 
             ActionGroup:
                 text: 'Usuario'
                 mode: 'spinner'
                 ActionButton:
-                    text: 'Cambiar Password'
+                    text: 'Password'
                     on_release: root.go_User()
                 ActionButton:
                     text: 'Cerrar Sesion'

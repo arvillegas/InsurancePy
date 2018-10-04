@@ -4,7 +4,9 @@
 #: import ListItemButton kivy.uix.listview.ListItemButton
  
 Clientes:
- 
+<LabelClientes@Label>
+    color:(0,0,0,1)
+    halign: 'left'
 <Clientes>:
     orientation: "vertical"
     first_name_text_input: first_name
@@ -12,6 +14,8 @@ Clientes:
     age_text_input:age_client
     picture_file_input:picture_file
     state_select:state_select
+    nei_client:nei_client
+
     padding: 10
     spacing: 10
     title:"Nuevo Cliente"
@@ -19,23 +23,25 @@ Clientes:
     Label:
         text:'Nuevo Cliente'
         pos:0,250
-        font_size:50
+        font_size:25
+        color:(0,0,0,1)
 
     Button:
         text:'Documentacion'
         size_hint:(None,None)
-        width:200
-        height:80
-        pos:300,80
+        width:150
+        height:50
+        pos_hint: {'left': 0.1,'top' : .25, 'center_x': 0.5}
         on_press:root.go_documents()
       
     GridLayout:
+        id:layoutCliente
         cols:2
         rows:10
         size_hint_y: None
         height: "100dp"
-        pos: -100, 400 
-        Label:
+        pos: -10, 350 
+        LabelClientes:
             text: "Nombre"
             width:20
             height:50
@@ -44,7 +50,7 @@ Clientes:
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text: "Apellido"
             width: 20
             height: 50
@@ -53,14 +59,14 @@ Clientes:
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text:"Edad"
         TextInput:
             id:age_client
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text:"Estado"
         Button:
             id:state_select
@@ -68,7 +74,8 @@ Clientes:
             height: 30
             width: 200
             text:"Seleccionar Estado"
-        Label:
+            on_release:root.open_drop_down(self)
+        LabelClientes:
             text:"Ciudad"
         Button:
             id:city_select
@@ -76,35 +83,36 @@ Clientes:
             height: 30
             width: 200
             text:"Seleccionar Ciudad"
-        Label:
+            on_release:root.open_drop_down_municipio(self)
+        LabelClientes:
             text:"Colonia"
         TextInput:
             id:nei_client
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text:"Calle"
         TextInput:
             id:street_client
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text:"Numero"
         TextInput:
             id: numdirclient
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text:"Telefono"
         TextInput:
             id: phoneclient
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelClientes:
             text:"Fotografia"
         Button:
             id:picture_file
@@ -112,6 +120,7 @@ Clientes:
             height: 30
             width: 200
             text:"Seleccionar Fotografia"
+            on_release:root.show_load()
 
 
 
@@ -121,7 +130,7 @@ Clientes:
         Button:
             text: "Guardar"
             size_hint_x: 15
-            on_press: root.submit_student()
+            on_press: root.submit_client()
         Button:
             text: "Borrar"
             size_hint_x: 15
@@ -130,3 +139,58 @@ Clientes:
             text: "Regresar"
             size_hint_x: 15
             on_press: root.go_back()
+
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
+
+<EstadoDropDown>:
+    Button:
+        text:"Queretaro"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Guanajuato"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"CD Mexico"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+
+
+<MunicipioDropDown>:
+    Button:
+        text:"Queretaro"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Celaya"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Hidalgo"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)

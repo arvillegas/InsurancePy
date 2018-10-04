@@ -1,13 +1,28 @@
 # Reference polizas.py
 #: import main polizas.poliza
  
+
+
 Polizas:
- 
+<LabelPolizas@Label>
+    color:(0,0,0,1)
+    halign: 'left'
+<TbPoliza@TextInput>
+    size_hint: (None, None)
+    height: 30
+    width: 160
+<BP@Button>
+    size_hint: (None, None)
+    height: 30
+    width: 160
 <Polizas>:
     orientation: "vertical"
-    first_name_text_input: first_name
-    last_name_text_input: last_name
-    age_text_input:age_client
+    num_poliza_text_input: num_poliza
+    name_benef_text_input: name_benef
+    last_name_benfe_text_input:last_name_benef
+    age_benef_text_input:age_benef
+    phone_benef_text_input:phone_benef
+
     picture_file_input:picture_file
     padding: 10
     spacing: 10
@@ -16,21 +31,24 @@ Polizas:
     Button:
         text:'Comprobante de Domicilio'
         size_hint:(None,None)
-        pos:100, 100
-        height:50
+        pos:20, 50
+        height:30
         width:200
+        on_release:root.show_load()
     Button:
         text:'INE'
         size_hint:(None,None)
-        pos:600, 100
-        height:50
+        pos:230, 50
+        height:30
         width:100
+        on_release:root.show_load()
 
  
     Label:
-        text:'Nueva Poliza'
+        text:'Nuevo Cliente'
         pos:0,250
-        font_size:50
+        font_size:25
+        color:(0,0,0,1)
 
       
     GridLayout:
@@ -38,95 +56,58 @@ Polizas:
         rows:11
         size_hint_y: None
         height: "100dp"
-        pos: -100, 400
-        Label:
+        pos: -5, 350 
+        LabelPolizas:
             text: "Numero de Poliza"
             width:20
             height:50 
-        TextInput:
-            id: num_agent
+        TbPoliza:
+            id: num_poliza
             text:'POLTIPO00000123'
-            size_hint: (None, None)
-            height: 30
-            width: 230
             disabled:True
-        Label:
+        LabelPolizas:
             text:"Cliente"
-        Button:
+        BP:
             id:picture_file
-            size_hint: (None, None)
-            height: 30
-            width: 230
-            text:"Seleccionar Cliente"
-        Label:
+            text:"Cliente"
+        LabelPolizas:
             text:"Tipo de Seguro"
-        Button:
+        BP:
             id:picture_file
-            size_hint: (None, None)
-            height: 30
-            width: 230
-            text:"Seleccionar Tipo de Seguro"
-        Label:
+            text:"Tipo de Seguro"
+        LabelPolizas:
             text: "Nombre Beneficiario"
-            width:20
-            height:50
-        TextInput:
-            id: first_name
-            size_hint: (None, None)
-            height: 30
-            width: 230
-        Label:
+        TbPoliza:
+            id: name_benef
+        LabelPolizas:
             text: "Apellido Beneficiario"
-            width: 20
-            height: 50
-        TextInput:  
-            id: last_name
-            size_hint: (None, None)
-            height: 30
-            width: 230
-        Label:
+        TbPoliza:  
+            id: last_name_benef
+        LabelPolizas:
             text:"Edad Beneficiario"
-        TextInput:
-            id:age_client
-            size_hint: (None, None)
-            height: 30
-            width: 230
-        Label:
+        TbPoliza:
+            id:age_benef
+        LabelPolizas:
             text:"Telefono Beneficiario"
-        TextInput:
-            id: phoneclient
-            size_hint: (None, None)
-            height: 30
-            width: 230
-        Label:
+        TbPoliza:
+            id: phone_benef
+        LabelPolizas:
             text:"Plan de Contratacion"
-        Button:
+        BP:
             id:picture_file
-            size_hint: (None, None)
-            height: 30
-            width: 230
-            text:"Seleccionar Plan de Contratacion"
-        Label:
+            text:"Plan de Contratacion"
+        LabelPolizas:
             text:"Fecha de Contratacion"
-        TextInput:
+        TbPoliza:
             id: phoneclient
-            size_hint: (None, None)
-            height: 30
-            width: 230
-        Label:
+        LabelPolizas:
             text:"Fecha de Vigencia"
-        TextInput:
+        TbPoliza:
             id: phoneclient
-            size_hint: (None, None)
-            height: 30
-            width: 230
-        Label:
+        LabelPolizas:
             text:"Suma Asegurada"
-        TextInput:
+        TbPoliza:
             id:email_client
-            size_hint: (None, None)
-            height: 30
-            width: 230
             disabled:True
         
  
@@ -136,11 +117,10 @@ Polizas:
         Button:
             text: "Guardar"
             size_hint_x: 15
-            on_press: root.submit_student()
+            on_press: root.submit_poliza()
         Button:
             text: "Borrar"
             size_hint_x: 15
-            on_press: root.delete_student()
         Button:
             text: "Regresar"
             size_hint_x: 15

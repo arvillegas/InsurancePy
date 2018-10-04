@@ -4,7 +4,21 @@
 #: import ListItemButton kivy.uix.listview.ListItemButton
  
 DocumentosClientes:
- 
+<ButtonDoc@Button>
+    size_hint: (None, None)
+    height: 30
+    width: 140
+
+<LabelDocs@Label>
+    color:(0,0,0,1)
+    size_hint:(None,None)
+    width:190
+    height:50
+    haling:'justify'
+    pos_hint:(0.1,.1)
+    valing:'middle'
+
+
 <DocumentosClientes>:
     orientation: "vertical"
     padding: 10
@@ -14,7 +28,8 @@ DocumentosClientes:
     Label:
         text:'Documentos Clientes'
         pos:0,250
-        font_size:50
+        font_size:30
+        color:(0,0,0,1)
 
       
     GridLayout:
@@ -22,31 +37,25 @@ DocumentosClientes:
         rows:3
         size_hint_y: None
         height: "100dp"
-        pos: -100, 400
-        Label:
+        pos: 15, 400
+        LabelDocs:
             text:"Comprobante de Domicilio"
-        Button:
+        ButtonDoc:
             id:picture_file
-            size_hint: (None, None)
-            height: 30
-            width: 200
             text:"Cargar Comprobante"
-        Label:
+            on_release:root.show_load()
+        LabelDocs:
             text:"INE"
-        Button:
+        ButtonDoc:
             id:picture_file
-            size_hint: (None, None)
-            height: 30
-            width: 200
             text:"Cargar Comprobante"
-        Label:
+            on_release:root.show_load()
+        LabelDocs:
             text:"Comprobante de Ingresos"
-        Button:
+        ButtonDoc:
             id:picture_file
-            size_hint: (None, None)
-            height: 30
-            width: 200
             text:"Cargar Comprobante"
+            on_release:root.show_load()
             
     BoxLayout:
         size_hint_y: None

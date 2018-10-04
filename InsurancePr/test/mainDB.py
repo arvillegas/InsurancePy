@@ -9,8 +9,19 @@ from kivy.uix.recyclegridlayout import RecycleGridLayout
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.uix.popup import Popup
+import pymysql.cursors
 import os
 
+class ConnectionMySql():
+    def getConnection():
+        connection = pymysql.connect(host='localhost',
+                                     user='root',
+                                     password='toor',                             
+                                     db='aseguradoradb',
+                                     charset='utf8mb4',
+                                     cursorclass=pymysql.cursors.DictCursor)
+
+        return connection
 
 class TextInputPopup(Popup):
     obj = ObjectProperty(None)
@@ -65,18 +76,27 @@ class RV(BoxLayout):
         self.get_users()
 
     def get_users(self):
-        path = r"D:\sqlLiteDir"
-        connection = sqlite3.connect(os.path.join(path, u"test.db"))
+        path = r"C:\Users\Avillegas\Documents\sqlDir"
+        rows = ObjectProperty()
+        #connection = sqlite3.connect(os.path.join(path, u"test.db"))
+        connection = ConnectionMySql.getConnection()
         print(connection)
-        cursor = connection.cursor()
 
-        cursor.execute("SELECT * FROM Usuarios")
-        rows = cursor.fetchall()
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT idCliente, Nombre, Apellido, Edad FROM cliente")
+            rows = cursor.fetchall()
+            for row in rows:
+                self.data_items.append(row['idCliente'])
+                self.data_items.append(row['Nombre'])
+                self.data_items.append(row['Apellido'])
+                self.data_items.append(row['Edad'])
+
+        #cursor = connection.cursor()
+
+        #cursor.execute("SELECT * FROM Usuarios")
+        #rows = cursor.fetchall()
 
         # create data_items
-        for row in rows:
-            for col in row:
-                self.data_items.append(col)
 
 
 class RVAgentes(BoxLayout):
@@ -87,7 +107,7 @@ class RVAgentes(BoxLayout):
         self.get_users()
 
     def get_users(self):
-        path = r"D:\sqlLiteDir"
+        path = r"C:\Users\Avillegas\Documents\sqlDir"
         connection = sqlite3.connect(os.path.join(path, u"test.db"))
         print(connection)
         cursor = connection.cursor()
@@ -108,18 +128,19 @@ class RVPolizas(BoxLayout):
         self.get_users()
 
     def get_users(self):
-        path = r"D:\sqlLiteDir"
-        connection = sqlite3.connect(os.path.join(path, u"test.db"))
+        path = r"C:\Users\Avillegas\Documents\sqlDir"
+        rows = ObjectProperty()
+        #connection = sqlite3.connect(os.path.join(path, u"test.db"))
+        connection = ConnectionMySql.getConnection()
         print(connection)
-        cursor = connection.cursor()
-
-        cursor.execute("SELECT * FROM Usuarios")
-        rows = cursor.fetchall()
-
-        # create data_items
-        for row in rows:
-            for col in row:
-                self.data_items.append(col)
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT idPoliza, NombreBenef, EdiadBenef, TelefonoBenef FROM poliza")
+            rows = cursor.fetchall()
+            for row in rows:
+                self.data_items.append(row['idPoliza'])
+                self.data_items.append(row['NombreBenef'])
+                self.data_items.append(row['EdiadBenef'])
+                self.data_items.append(row['TelefonoBenef'])
 
 
 class TestApp(App):

@@ -1,6 +1,7 @@
 from kivy.uix.screenmanager import Screen, ScreenManager, SlideTransition, FadeTransition
 from kivy.properties import StringProperty, ListProperty
 from kivy.app import App
+from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -73,8 +74,8 @@ class LoginScreen(Screen):
         self.manager.transition = SlideTransition(direction="left")
         self.manager.current = 'connected'
 
-        app.config.read(app.get_application_config())
-        app.config.write()
+        #app.config.read(app.get_application_config())
+        #app.config.write()
 
     def resetForm(self):
         self.ids['login'].text = ""
@@ -88,10 +89,15 @@ class LoginApp(App):
     def build(self):
         manager = ScreenManager()
         listScreen = ListCliente(name='list')
+#
+        Window.clearcolor = (.827, .827, .827, .5)
+        Window.set_title("Sistema de Aseguradora Demo")
+        Window.size = (350, 550)
+        #self.size = (400, 300)
 
-        self.available_screens = sorted([
-            'Agentes Seguros', 'Clientes', 'Polizas', 'Usuario'])
-        self.screen_names = self.available_screens
+        #self.available_screens = sorted([
+        #    'Agentes Seguros', 'Clientes', 'Polizas', 'Usuario'])
+        #self.screen_names = self.available_screens
 
         manager.add_widget(LoginScreen(name='login'))
         manager.add_widget(Connected(name='connected'))
