@@ -74,6 +74,7 @@ Polizas:
         BP:
             id:tipo_select
             text:"Tipo de Seguro"
+            on_release:root.open_dd_tipo(self)
         LabelPolizas:
             text: "Nombre Beneficiario"
         TbPoliza:
@@ -95,6 +96,7 @@ Polizas:
         BP:
             id:plan_select
             text:"Plan de Contratacion"
+            on_release:root.open_dd_plan(self)
         LabelPolizas:
             text:"Fecha de Contratacion"
         TbPoliza:
@@ -139,6 +141,42 @@ Polizas:
         on_release: root.select(self.text)
     Button:
         text:"Cliente 3"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+
+
+<TipoSeguroDropDown>:
+    Button:
+        text:"Tipo 1"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Tipo 2"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Tipo 3"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+
+
+<PlanDropDown>:
+    Button:
+        text:"Plan 1"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Plan 2"
+        size:(200,50)
+        size_hint:(None,None)
+        on_release: root.select(self.text)
+    Button:
+        text:"Plan 3"
         size:(200,50)
         size_hint:(None,None)
         on_release: root.select(self.text)

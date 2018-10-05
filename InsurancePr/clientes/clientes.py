@@ -5,11 +5,12 @@ from kivy.properties import ObjectProperty
 from kivy.uix.listview import ListItemButton	
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-import pymysql.cursors  
+import pymysql.cursors
+import os  
 
 class Clientes(Screen):
-
     def __init__(self, **kwargs):
         super(Clientes, self).__init__(**kwargs)
 
@@ -55,11 +56,23 @@ class Clientes(Screen):
             # connection is not autocommit by default. So you must commit to save
             # your changes.
             connection.commit()
+            popupC = Popup(title='Cliente',
+                content=Label(text='Registro exitoso'),
+                size_hint=(None, None), size=(250, 200))
+            rv = self.manager.get_screen('listaClientes').children[1]
+            rv.ids.bxTable.children[0].children[0].data = [{}]
+            rv.get_users()
+            popupC.open()
+
         except RuntimeError:
-            print("Oops!  Error Runtime.")
+            print("Oops!  Error en la base de datos.")
         finally:
             # Close connection.
             connection.close()
+        
+
+
+
 
     loadfile = ObjectProperty(None)
 
@@ -71,7 +84,9 @@ class Clientes(Screen):
 
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as stream:
-            self.text_input.text = stream.read()
+            self.ids.layoutCliente.children[0].text = filename[0]
+            #for i in range(0,15):
+                #print(str(i) + str(self.ids.layoutCliente.children[i].text))
 
         self.dismiss_popup()
 

@@ -23,7 +23,7 @@ DocumentosClientes:
     orientation: "vertical"
     padding: 10
     spacing: 10
-
+    varlbldom:lbldom
  
     Label:
         text:'Documentos Clientes'
@@ -39,21 +39,24 @@ DocumentosClientes:
         height: "100dp"
         pos: 15, 400
         LabelDocs:
+            id:lbldom
             text:"Comprobante de Domicilio"
         ButtonDoc:
-            id:picture_file
+            id:btndom
             text:"Cargar Comprobante"
             on_release:root.show_load()
         LabelDocs:
+            id:lbline
             text:"INE"
         ButtonDoc:
-            id:picture_file
+            id:btnine
             text:"Cargar Comprobante"
             on_release:root.show_load()
         LabelDocs:
+            id:lblingreso
             text:"Comprobante de Ingresos"
         ButtonDoc:
-            id:picture_file
+            id:btningreso
             text:"Cargar Comprobante"
             on_release:root.show_load()
             
@@ -63,7 +66,7 @@ DocumentosClientes:
         Button:
             text: "Guardar"
             size_hint_x: 15
-            on_press: root.submit_student()
+            on_press: root.submit_documents()
         Button:
             text: "Borrar"
             size_hint_x: 15
@@ -72,3 +75,26 @@ DocumentosClientes:
             text: "Regresar"
             size_hint_x: 15
             on_press: root.go_back()
+
+<Picture>:
+    on_size: self.center = win.Window.center
+    size: image.size
+    size_hint: None, None
+
+    Image:
+        id: image
+        source: root.source
+
+        # create initial image to be 400 pixels width
+        size: 400, 400 / self.image_ratio
+
+        # add shadow background
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            BorderImage:
+                source: 'shadow32.png'
+                border: (36,36,36,36)
+                size:(self.width+72, self.height+72)
+                pos: (-36,-36)
+

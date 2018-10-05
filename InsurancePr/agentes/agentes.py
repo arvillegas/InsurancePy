@@ -5,11 +5,65 @@ from kivy.properties import ObjectProperty
 from kivy.uix.listview import ListItemButton	
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
+from clientes.clientes import LoadDialog
+from kivy.uix.popup import Popup
+from test.mainDB import ConnectionMySql
+from kivy.uix.label import Label
+import pymysql.cursors
+import os
 
 class Agentes(Screen):
     def go_back(self):
         self.manager.transition = SlideTransition(direction="right")
-        self.manager.current = 'connected'
+        self.manager.current = 'login'
+
+
+    def show_load(self):
+        content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
+        self._popup = Popup(title="Load file", content=content,
+                            size_hint=(0.9, 0.9))
+        self._popup.open()
+
+    def load(self, path, filename):
+        #with open(os.path.join(path, filename[0])) as stream:
+            #for i in range(0,15):
+                #print(str(i) + str(self.ids.layoutCliente.children[i].text))
+
+        self.dismiss_popup()
+
+    def dismiss_popup(self):
+        self._popup.dismiss()
+
+
+    def submit_agente(self):
+        connection = ConnectionMySql.getConnection()
+        print('connection')
+
+        try:
+            with connection.cursor() as cursor:
+                # Create a new record
+                sql = "INSERT INTO `agente` ( NoAgente, Nombre, Apellido, Edad, Correo, Telefono, Password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                print('sql')
+                cursor.execute(sql, (self.num_agent_text_input.text, self.first_name_text_input.text,self.last_name_text_input.text
+                                    ,self.age_agent_text_input.text,self.email_agent_text_input.text,self.phoneagent_text_input.text
+                                    ,self.password_agent_input.text))
+                print('execute')
+
+            # connection is not autocommit by default. So you must commit to save
+            # your changes.
+            connection.commit()
+            popupC = Popup(title='Agente',
+                content=Label(text='Registro exitoso'),
+                size_hint=(None, None), size=(250, 200))
+            popupC.open()
+            self.manager.transition = SlideTransition(direction="right")
+            self.manager.current = 'login'
+
+        except RuntimeError:
+            print("Oops!  Error en la base de datos.")
+        finally:
+            # Close connection.
+            connection.close()
 
 class StudentListButton(ListItemButton):
     pass

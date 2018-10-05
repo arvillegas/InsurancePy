@@ -4,13 +4,19 @@
 #: import ListItemButton kivy.uix.listview.ListItemButton
  
 Agentes:
+<LabelAgentes@Label>
+    color:(0,0,0,1)
+    halign: 'left'
  
 <Agentes>:
     orientation: "vertical"
+    num_agent_text_input: num_agent
     first_name_text_input: first_name
+    age_agent_text_input: age_agent
+    email_agent_text_input: email_agent
     last_name_text_input: last_name
-    age_text_input:age_client
-    picture_file_input:picture_file
+    phoneagent_text_input:phoneagent
+    password_agent_input:password_agent
     padding: 10
     spacing: 10
 
@@ -18,7 +24,8 @@ Agentes:
     Label:
         text:'Nuevo Agente'
         pos:0,250
-        font_size:50
+        font_size:25
+        color:(0,0,0,1)
 
       
     GridLayout:
@@ -26,8 +33,8 @@ Agentes:
         rows:9
         size_hint_y: None
         height: "100dp"
-        pos: -100, 400
-        Label:
+        pos: -5, 350 
+        LabelAgentes:
             text: "Numero de Agente"
             width:20
             height:50 
@@ -38,7 +45,7 @@ Agentes:
             height: 30
             width: 200
             disabled:True
-        Label:
+        LabelAgentes:
             text: "Nombre"
             width:20
             height:50
@@ -47,7 +54,7 @@ Agentes:
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelAgentes:
             text: "Apellido"
             width: 20
             height: 50
@@ -56,42 +63,44 @@ Agentes:
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelAgentes:
             text:"Edad"
         TextInput:
-            id:age_client
+            id:age_agent
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelAgentes:
             text:"Correo Electronico"
         TextInput:
-            id:email_client
+            id:email_agent
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelAgentes:
             text:"Telefono"
         TextInput:
-            id: phoneclient
+            id: phoneagent
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+        LabelAgentes:
             text:"Password"
         TextInput:
-            id:password_client
+            id:password_agent
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+            password:True
+        LabelAgentes:
             text:"Confirmar Password"
         TextInput:
             id:pass_repeat_client
             size_hint: (None, None)
             height: 30
             width: 200
-        Label:
+            password:True
+        LabelAgentes:
             text:"Fotografia"
         Button:
             id:picture_file
@@ -99,6 +108,7 @@ Agentes:
             height: 30
             width: 200
             text:"Seleccionar Fotografia"
+            on_release:root.show_load()
             
     BoxLayout:
         size_hint_y: None
@@ -106,11 +116,10 @@ Agentes:
         Button:
             text: "Guardar"
             size_hint_x: 15
-            on_press: root.submit_student()
+            on_press: root.submit_agente()
         Button:
             text: "Borrar"
             size_hint_x: 15
-            on_press: root.delete_student()
         Button:
             text: "Regresar"
             size_hint_x: 15

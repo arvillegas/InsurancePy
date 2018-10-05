@@ -34,6 +34,7 @@
 
 <RV>:
     BoxLayout:
+        id:idBoxLayout
         orientation: "vertical"
 
         GridLayout:
@@ -52,7 +53,9 @@
                 text: "Age"
 
         BoxLayout:
+            id:tblBoxCliente
             RecycleView:
+                id:tblCliente
                 viewclass: 'SelectableButton'
                 data: [{'text': str(x)} for x in root.data_items]
                 SelectableRecycleGridLayout:

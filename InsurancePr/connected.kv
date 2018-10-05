@@ -7,11 +7,11 @@
 
     ActionBar:
         pos_hint: {'top':1}
-
+        background_color:.5,.08, .08, .5
         ActionView:
             use_separator: True
             ActionPrevious:
-                title: 'Aseguradora App'
+                title: 'Demo'
                 with_previous: False
 
             ActionGroup:
@@ -43,6 +43,20 @@
                 ActionButton:
                     text: 'Cerrar Sesion'
                     on_release: root.go_CloseSesion()
+
+
+    Label:
+        text:'Bienvenido agente1'
+        font_size:20
+        color:0,0,0,1
+        pos:0,50
+    Image:
+        id:imagemain
+        source: 'logo.png'
+        size_hint_y:None
+        height:100
+        pos:0,150
+
 
 <ListScreen>:
     fullscreen: True

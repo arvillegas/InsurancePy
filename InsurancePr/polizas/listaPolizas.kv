@@ -4,13 +4,14 @@
 
 <RVPolizas>:
     BoxLayout:
+        id:bxTable
         orientation: "vertical"
-
+        color:(0, 0, 0, 1)
         GridLayout:
             size_hint: 1, None
             size_hint_y: None
             height: 25
-            cols: 4
+            cols: 5
 
             LabelListP:
                 text: "No Poliza"
@@ -20,13 +21,16 @@
                 text: "Fecha"
             LabelListP:
                 text: "Tipo"
+            LabelListP:
+                text:'ver/editar'
 
         BoxLayout:
+            id:bxView
             RecycleView:
                 viewclass: 'SelectableButton'
                 data: [{'text': str(x)} for x in root.data_items]
                 SelectableRecycleGridLayout:
-                    cols: 4 
+                    cols: 5 
                     default_size: None, dp(26)
                     default_size_hint: 1, None
                     size_hint_y: None

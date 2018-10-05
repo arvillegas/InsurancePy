@@ -5,6 +5,7 @@ from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.properties import ListProperty
 from connected import Connected
 from clientes.clientes import Clientes
@@ -18,6 +19,7 @@ from clientes.documentsclientes import DocumentosClientes
 from kivy.lang import Builder
 from kivy.config import Config
 from test.mainDB import RV
+from kivy.uix.popup import Popup
 #from agentes.listaclientes import RV
 
 
@@ -64,15 +66,28 @@ class ListCliente(Screen, GridLayout):
             button.text = 'O'
 
 
-class LoginScreen(Screen):
+class AseguradoraScreen(Screen):
+    def do_register(self):
+        self.manager.transition = SlideTransition(direction="left")
+        self.manager.current = 'agente'
+
     def do_login(self, loginText, passwordText):
         app = App.get_running_app()
+
+        popup = Popup(title='Acceso',
+                        content=Label(text='usuario y/o password incorrecto'),
+                        size_hint=(None, None), size=(250, 200))
 
         app.username = loginText
         app.password = passwordText
 
-        self.manager.transition = SlideTransition(direction="left")
-        self.manager.current = 'connected'
+        if (not (loginText == "agente1") or not (passwordText == "pas1")):
+            popup.open()
+        else:
+            self.manager.transition = SlideTransition(direction="left")
+            self.manager.current = 'connected'
+
+
 
         #app.config.read(app.get_application_config())
         #app.config.write()
@@ -81,7 +96,7 @@ class LoginScreen(Screen):
         self.ids['login'].text = ""
         self.ids['password'].text = ""
 
-class LoginApp(App):
+class AseguradoraApp(App):
     username = StringProperty(None)
     password = StringProperty(None)
     screen_names = ListProperty([])
@@ -90,7 +105,8 @@ class LoginApp(App):
         manager = ScreenManager()
         listScreen = ListCliente(name='list')
 #
-        Window.clearcolor = (.827, .827, .827, .5)
+        #Window.clearcolor = (.25, .55, .77, .5)
+        Window.clearcolor = (.40, .61, .77, .5)
         Window.set_title("Sistema de Aseguradora Demo")
         Window.size = (350, 550)
         #self.size = (400, 300)
@@ -99,7 +115,7 @@ class LoginApp(App):
         #    'Agentes Seguros', 'Clientes', 'Polizas', 'Usuario'])
         #self.screen_names = self.available_screens
 
-        manager.add_widget(LoginScreen(name='login'))
+        manager.add_widget(AseguradoraScreen(name='login'))
         manager.add_widget(Connected(name='connected'))
         manager.add_widget(Clientes(name='cliente'))
         manager.add_widget(listScreen)
@@ -131,4 +147,4 @@ class LoginApp(App):
 
 
 if __name__ == '__main__':
-    LoginApp().run()
+    AseguradoraApp().run()

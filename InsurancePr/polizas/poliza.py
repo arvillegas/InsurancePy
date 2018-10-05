@@ -4,7 +4,9 @@ from kivy.properties import ObjectProperty
 from clientes.clientes import LoadDialog
 from kivy.uix.dropdown import DropDown
 from kivy.uix.popup import Popup
-import pymysql.cursors  
+from kivy.uix.label import Label
+import pymysql.cursors
+import os  
 
 class Polizas(Screen):
     num_poliza_text_input= ObjectProperty()
@@ -17,6 +19,14 @@ class Polizas(Screen):
         self.dropdown = ClienteDropDown(self)           
         self.dropdown.open(widget)
 
+    def open_dd_tipo(self, widget):
+        self.dropdown = TipoSeguroDropDown(self)           
+        self.dropdown.open(widget)
+
+    def open_dd_plan(self, widget):
+        self.dropdown = PlanDropDown(self)           
+        self.dropdown.open(widget)        
+
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
         self._popup = Popup(title="Load file", content=content,
@@ -24,9 +34,8 @@ class Polizas(Screen):
         self._popup.open()
 
     def load(self, path, filename):
-        with open(os.path.join(path, filename[0])) as stream:
-            self.text_input.text = stream.read()
-
+        #with open(os.path.join(path, filename[0])) as stream:
+            #self.text_input.text = stream.read()
         self.dismiss_popup()
 
     def dismiss_popup(self):
@@ -59,6 +68,13 @@ class Polizas(Screen):
         finally:
             # Close connection.
             connection.close()
+        popupP = Popup(title='Poliza',
+            content=Label(text='Registro exitoso'),
+            size_hint=(None, None), size=(250, 200))
+        rv = self.manager.get_screen('listaPolizas').children[1]
+        rv.ids.bxTable.children[0].children[0].data = [{}]
+        rv.get_users()
+        popupP.open()
 
 
 class ClienteDropDown(DropDown):

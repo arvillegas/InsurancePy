@@ -81,6 +81,7 @@ class RV(BoxLayout):
         #connection = sqlite3.connect(os.path.join(path, u"test.db"))
         connection = ConnectionMySql.getConnection()
         print(connection)
+        self.data_items.clear()
 
         with connection.cursor() as cursor:
             cursor.execute("SELECT idCliente, Nombre, Apellido, Edad FROM cliente")
@@ -90,6 +91,7 @@ class RV(BoxLayout):
                 self.data_items.append(row['Nombre'])
                 self.data_items.append(row['Apellido'])
                 self.data_items.append(row['Edad'])
+                self.data_items.append('...')
 
         #cursor = connection.cursor()
 
@@ -114,7 +116,6 @@ class RVAgentes(BoxLayout):
 
         cursor.execute("SELECT * FROM Usuarios")
         rows = cursor.fetchall()
-
         # create data_items
         for row in rows:
             for col in row:
@@ -133,14 +134,16 @@ class RVPolizas(BoxLayout):
         #connection = sqlite3.connect(os.path.join(path, u"test.db"))
         connection = ConnectionMySql.getConnection()
         print(connection)
+        self.data_items.clear()
         with connection.cursor() as cursor:
-            cursor.execute("SELECT idPoliza, NombreBenef, EdiadBenef, TelefonoBenef FROM poliza")
+            cursor.execute("SELECT idPoliza, NombreBenef, ApellidoBenef, EdiadBenef FROM poliza")
             rows = cursor.fetchall()
             for row in rows:
                 self.data_items.append(row['idPoliza'])
                 self.data_items.append(row['NombreBenef'])
+                self.data_items.append(row['ApellidoBenef'])
                 self.data_items.append(row['EdiadBenef'])
-                self.data_items.append(row['TelefonoBenef'])
+                self.data_items.append('...')
 
 
 class TestApp(App):
