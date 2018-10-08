@@ -7,6 +7,22 @@
         id:bxTable
         orientation: "vertical"
         color:(0, 0, 0, 1)
+
+        GridLayout:
+            size_hint: 1, None
+            size_hint_y: None
+            height: 30
+            cols: 2
+            TextInput:
+                size_hint:(None,None)
+                width:150
+                height:30
+            Button:
+                text:"Buscar"
+                size_hint:(None,None)
+                width:150
+                height:30
+
         GridLayout:
             size_hint: 1, None
             size_hint_y: None
